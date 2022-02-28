@@ -6,9 +6,8 @@
 
 
 # Conception
-
-![](../../Images/Capture d’écran de 2022-02-22 23-58-20.png)
-
+![conception](https://user-images.githubusercontent.com/18338944/155972467-e0ff8a51-b787-4b35-a578-2840135aaa00.png)
+ 
 # Installation
 
 Il vous faut au moins :
@@ -22,7 +21,7 @@ Pour lancer le projet, il faut le cloner a l'aide de l'invite de commande :
  
  cd test-leboncoin
  
- $ docker-compose build
+ $ sudo docker-compose up --force-recreate (--force-recreate si c'est besoin)
  
  $ docker exec -it www_docker_symfony bash (si besoin d'utiliser le shell du conteneur “www”)
  
@@ -104,9 +103,10 @@ BEGIN
 DELIMITER ;
 ```
 
-# Accéder à l'application
+# Accéder à l'application et Bdd
 
 Vous pouvez maintenant accéder à l'application via : http://127.0.0.1:8741/
+bdd : http://127.0.0.1:8080/ (username : root / sans mot de passe)
 
 # Liste des endpoints
 
@@ -124,26 +124,30 @@ Vous pouvez maintenant accéder à l'application via : http://127.0.0.1:8741/
 ```
 curl -i -H "Content-Type: application/json" -X POST -d '{"Title":"Dalton","Content":"joe","Category":"1","Model":"5"}' http://localhost/api/advert      
 ```
-![](../../Images/Capture d’écran de 2022-02-23 15-23-32.png)
+![post](https://user-images.githubusercontent.com/18338944/155973067-ce98d335-274d-4d2c-bd78-fe1517205d7b.png)
+
 ```
 curl -i http://localhost/api/advert/1
 
 ```
-![](../../Images/Capture d’écran de 2022-02-23 15-20-41.png)
+![get](https://user-images.githubusercontent.com/18338944/155973224-bd389762-bed1-4b4c-964d-baebbb28fd54.png)
 
 ```
  curl -i -H "Content-Type: application/json" -X PUT -d '{"Title":"updated title", "Content": "updated content", "Category": "2"}' http://localhost/api/advert/1
 ```
-![](../../Images/Capture d’écran de 2022-02-23 15-32-26.png)
+![put](https://user-images.githubusercontent.com/18338944/155973370-40c63dc9-484c-4254-881e-3a06c35ca07b.png)
+
 ```
 curl -i -H "Content-Type: application/json" -X "DELETE" http://localhost/api/advert/1
 ```
-![](../../Images/Capture d’écran de 2022-02-23 15-34-09.png)
+![delete](https://user-images.githubusercontent.com/18338944/155973525-49c79171-8bbc-4625-9934-5e3befdafc71.png)
+
+
 # Test API PHPUNIT
 
 Lancement de tests :
 ```
-$ docker exec -it www_docker_symfony bash
+$ sudo docker exec -it www_docker_symfony bash
 ```
 ```
 $ /var/www# $ cd advertProject/
